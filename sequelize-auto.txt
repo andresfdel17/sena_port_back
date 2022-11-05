@@ -1,1 +1,1 @@
-sequelize-auto -o "./src/models" -d database -h localhost -u root -p 3306 -x password -e mysql -l ts
+sequelize-auto -o "./src/models" -d sena_port -h localhost -u root -p 3306 -x Sena1234 -e mysql -l ts

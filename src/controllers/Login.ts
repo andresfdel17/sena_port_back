@@ -43,12 +43,16 @@ router.post("/login", async (req: Request, res: Response) => {
         text: "incorrect-pass"
       });
     }
-    const token = JWTManager.createToken(user, process.env.JWT_SECRET as string);
-    console.log(token);
+    const token = JWTManager.createToken(user.toJSON(), process.env.JWT_SECRET as string);
+    const {exp} = JWTManager.decodeToken(token);
 
     return res.json({
       code: 200,
-      text: "logged-in"
+      text: "logged-in",
+      token,
+      expiresAt: exp,
+      isAuthenticated: true,
+      lang: user.lang
     })
   } catch (error) {
     console.error(error);

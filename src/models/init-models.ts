@@ -20,6 +20,8 @@ export function initModels(sequelize: Sequelize) {
   const main_user_types = _main_user_types.initModel(sequelize);
   const main_users = _main_users.initModel(sequelize);
 
+  main_users.belongsTo(main_user_types, { as: "type", foreignKey: "type_id"});
+  main_user_types.hasMany(main_users, { as: "main_users", foreignKey: "type_id"});
 
   return {
     main_user_types: main_user_types,

@@ -1,5 +1,6 @@
 import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
+import type { main_users, main_usersId } from './main_users';
 
 export interface main_user_typesAttributes {
   id: number;
@@ -19,6 +20,18 @@ export class main_user_types extends Model<main_user_typesAttributes, main_user_
   createdAt?: Date;
   updatedAt?: Date;
 
+  // main_user_types hasMany main_users via type_id
+  main_users!: main_users[];
+  getMain_users!: Sequelize.HasManyGetAssociationsMixin<main_users>;
+  setMain_users!: Sequelize.HasManySetAssociationsMixin<main_users, main_usersId>;
+  addMain_user!: Sequelize.HasManyAddAssociationMixin<main_users, main_usersId>;
+  addMain_users!: Sequelize.HasManyAddAssociationsMixin<main_users, main_usersId>;
+  createMain_user!: Sequelize.HasManyCreateAssociationMixin<main_users>;
+  removeMain_user!: Sequelize.HasManyRemoveAssociationMixin<main_users, main_usersId>;
+  removeMain_users!: Sequelize.HasManyRemoveAssociationsMixin<main_users, main_usersId>;
+  hasMain_user!: Sequelize.HasManyHasAssociationMixin<main_users, main_usersId>;
+  hasMain_users!: Sequelize.HasManyHasAssociationsMixin<main_users, main_usersId>;
+  countMain_users!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof main_user_types {
     return main_user_types.init({
