@@ -1,8 +1,10 @@
 import { Request, Response, Router } from "express";
 import { db } from "../db/connection";
+import { JWTManager, PasswordManager } from "../lib";
 import { initModels } from "../models";
 const router: Router = Router();
 const { main_users: Users } = initModels(db.conection);
+
 
 router.get(`/`, (req: Request, res: Response) => {
   res.json({
@@ -18,7 +20,24 @@ router.post("/login", async (req: Request, res: Response) => {
         email: username
       }
     });
-    console.log(user);
+    //Valida que exista el usuario
+    if (!user) {
+      return res.json({
+        code: 404,
+        text: "user-unk"
+      });
+    }
+    //Valida la contraseña
+    const verifyPass = await PasswordManager.comparePassword(password, user.password as string)
+    if (!verifyPass) {
+      return res.json({
+        code: 401,
+        text: "incorrect-pass"
+      });
+    }
+    const token = JWTManager.createToken(user, process.env.JWT_SECRET as string);
+    console.log(token);
+    
     return res.json({
       code: 200,
       text: "logged-in"
