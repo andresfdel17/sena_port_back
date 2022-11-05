@@ -1,12 +1,20 @@
 import { Request, Response, Router } from "express";
 import { db } from "../db/connection";
-import { JWTManager, PasswordManager } from "../lib";
+import { JWTManager, Mail, PasswordManager } from "../lib";
 import { initModels } from "../models";
 const router: Router = Router();
 const { main_users: Users } = initModels(db.conection);
 
 
 router.get(`/`, (req: Request, res: Response) => {
+  /*const mail = new Mail;
+  mail.sendMail({
+    to: "istjuanmolina@gmail.com",
+    from: "andresfdel13@gmail.com",
+    subject: "TEST"
+  }, "", () => {
+    console.log("Correo  enviado");
+  });*/
   res.json({
     text: "login controller ready"
   })
@@ -37,7 +45,7 @@ router.post("/login", async (req: Request, res: Response) => {
     }
     const token = JWTManager.createToken(user, process.env.JWT_SECRET as string);
     console.log(token);
-    
+
     return res.json({
       code: 200,
       text: "logged-in"
