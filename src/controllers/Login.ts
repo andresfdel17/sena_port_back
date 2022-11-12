@@ -44,8 +44,7 @@ router.post("/login", async (req: Request, res: Response) => {
       });
     }
     const token = JWTManager.createToken(user.toJSON(), process.env.JWT_SECRET as string);
-    const {exp} = JWTManager.decodeToken(token);
-
+    const { exp } = JWTManager.decodeToken(token);
     return res.json({
       code: 200,
       text: "logged-in",
@@ -54,6 +53,19 @@ router.post("/login", async (req: Request, res: Response) => {
       isAuthenticated: true,
       lang: user.lang
     })
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      code: 500,
+      text: "server-error"
+    });
+  }
+});
+
+router.post("/register", async (req: Request, res: Response) => {
+  try {
+    
+   
   } catch (error) {
     console.error(error);
     return res.json({

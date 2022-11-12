@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2022 a las 02:57:48
+-- Tiempo de generación: 12-11-2022 a las 02:50:09
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -30,10 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `main_users` (
   `id` int(11) NOT NULL,
   `type_id` int(11) DEFAULT NULL,
+  `lang` varchar(10) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -42,8 +43,8 @@ CREATE TABLE `main_users` (
 -- Volcado de datos para la tabla `main_users`
 --
 
-INSERT INTO `main_users` (`id`, `type_id`, `name`, `last_name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'Andres Felipe', 'Delgado Gutierrez', 'andresfdel13@gmail.com', '$2y$10$dm706suZis3Yem7NxBHsrOFs7wUjkyjlW7eyjlKGiJs', '2022-11-05 02:30:35', '2022-11-05 02:30:35');
+INSERT INTO `main_users` (`id`, `type_id`, `lang`, `name`, `last_name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 'es', 'Andres Felipe', 'Delgado Gutierrez', 'andresfdel13@gmail.com', '$2y$10$VA9IAGr39GZ0E3hkzOiY7uWyPj3ITj7EynkkyT5aig8EsxcENwYHO', '2022-11-05 02:30:35', '2022-11-05 02:30:35');
 
 -- --------------------------------------------------------
 
