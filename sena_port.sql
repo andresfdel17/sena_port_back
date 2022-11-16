@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2022 a las 02:50:09
+-- Tiempo de generación: 16-11-2022 a las 02:44:01
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -66,6 +66,28 @@ CREATE TABLE `main_user_types` (
 INSERT INTO `main_user_types` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (1, 'Admin', '2022-11-05 02:30:02', '2022-11-05 02:30:02');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `system_temp_pass`
+--
+
+CREATE TABLE `system_temp_pass` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `code` int(11) DEFAULT NULL,
+  `due_date` date DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `system_temp_pass`
+--
+
+INSERT INTO `system_temp_pass` (`id`, `email`, `code`, `due_date`, `createdAt`, `updatedAt`) VALUES
+(1, 'andresfdel13@gmail.com', 359, NULL, '2022-11-16 01:17:47', '2022-11-16 01:17:47');
+
 --
 -- Índices para tablas volcadas
 --
@@ -84,6 +106,12 @@ ALTER TABLE `main_user_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `system_temp_pass`
+--
+ALTER TABLE `system_temp_pass`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -97,6 +125,12 @@ ALTER TABLE `main_users`
 -- AUTO_INCREMENT de la tabla `main_user_types`
 --
 ALTER TABLE `main_user_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `system_temp_pass`
+--
+ALTER TABLE `system_temp_pass`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

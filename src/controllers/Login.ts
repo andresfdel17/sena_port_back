@@ -3,7 +3,10 @@ import { db } from "../db/connection";
 import { JWTManager, Mail, PasswordManager } from "../lib";
 import { initModels } from "../models";
 const router: Router = Router();
-const { main_users: Users } = initModels(db.conection);
+const {
+  main_users: Users,
+  system_temp_pass: TempPass
+} = initModels(db.conection);
 
 
 router.get(`/`, (req: Request, res: Response) => {
@@ -64,8 +67,12 @@ router.post("/login", async (req: Request, res: Response) => {
 
 router.post("/register", async (req: Request, res: Response) => {
   try {
-    
-   
+    console.log(req.body);
+    res.json({
+      code: 200,
+      text: "success"
+    })
+
   } catch (error) {
     console.error(error);
     return res.json({
@@ -75,4 +82,34 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/send-code", async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    const code = Math.floor((Math.random()) * 100000);
+    const tempCode = await TempPass.create({
+      email,
+      code,
+    });
+    console.log(code);
+    
+    if (tempCode) {
+      return res.json({
+        code: 200,
+        text: "code-send"
+      });
+    }
+    return res.json({
+      code: 400,
+      text:" code-not-send"
+    })
+
+
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      code: 500,
+      text: "server-error"
+    });
+  }
+});
 export default router;
