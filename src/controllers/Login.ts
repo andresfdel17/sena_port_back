@@ -84,13 +84,19 @@ router.post("/register", async (req: Request, res: Response) => {
 
 router.post("/send-code", async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
-    const code = Math.floor((Math.random()) * 100000);
+    const { email, translates } = req.body;
+    const code = 100000 + Math.floor((Math.random()) * 900000);
+    const addDay = (days: number): Date => {
+      const date = new Date();
+      date.setDate(date.getDate() + days);
+      return date;
+    }
     const tempCode = await TempPass.create({
       email,
       code,
+      due_date: addDay(3).toISOString()
     });
-    console.log(code);
+    
     
     if (tempCode) {
       return res.json({
