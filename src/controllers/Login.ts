@@ -43,7 +43,7 @@ router.post("/login", async (req: Request, res: Response) => {
     if (!verifyPass) {
       return res.json({
         code: 401,
-        text: "incorrect-pass"
+        text: "user-unk"
       });
     }
     const token = JWTManager.createToken(user.toJSON(), process.env.JWT_SECRET as string);

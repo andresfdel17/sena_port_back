@@ -20,10 +20,12 @@ app.use(express.urlencoded({ extended: false }));
 // parse requests of content-type - application/json
 app.use(express.json());
 app.use("/public", express.static(path.join(__dirname, "../public")));
+app.use("/img", express.static(path.join("./uploads")));
 //Rutas de controladores
 app.use("/api/login", Login);
+//carpeta raiz
 app.get("/", async (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+  res.json({ text: `${process.env.APP_NAME} Ready!` })
 });
 
 export default app;
