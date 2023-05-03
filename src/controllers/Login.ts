@@ -2,14 +2,14 @@ import { Request, Response, Router } from "express";
 import { db } from "../db/connection";
 import { JWTManager, Mail, PasswordManager } from "../lib";
 import { initModels } from "../models";
-const router: Router = Router();
+const Login: Router = Router();
 const {
   main_users: Users,
   system_temp_pass: TempPass
 } = initModels(db.conection);
 
 
-router.get(`/`, (req: Request, res: Response) => {
+Login.get(`/`, (req: Request, res: Response) => {
   /*const mail = new Mail;
   mail.sendMail({
     to: "istjuanmolina@gmail.com",
@@ -23,7 +23,7 @@ router.get(`/`, (req: Request, res: Response) => {
   })
 });
 
-router.post("/login", async (req: Request, res: Response) => {
+Login.post("/login", async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findOne({
@@ -65,7 +65,7 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/register", async (req: Request, res: Response) => {
+Login.post("/register", async (req: Request, res: Response) => {
   try {
     console.log(req.body);
     res.json({
@@ -82,7 +82,7 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/send-code", async (req: Request, res: Response) => {
+Login.post("/send-code", async (req: Request, res: Response) => {
   try {
     const { email, translates } = req.body;
     const code = 100000 + Math.floor((Math.random()) * 900000);
@@ -96,8 +96,8 @@ router.post("/send-code", async (req: Request, res: Response) => {
       code,
       due_date: addDay(3).toISOString()
     });
-    
-    
+
+
     if (tempCode) {
       return res.json({
         code: 200,
@@ -106,7 +106,7 @@ router.post("/send-code", async (req: Request, res: Response) => {
     }
     return res.json({
       code: 400,
-      text:" code-not-send"
+      text: " code-not-send"
     })
 
 
@@ -118,4 +118,4 @@ router.post("/send-code", async (req: Request, res: Response) => {
     });
   }
 });
-export default router;
+export { Login };

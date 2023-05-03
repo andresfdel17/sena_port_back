@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //Controllers
-import Login from "./controllers/Login";
+import { Login, Home } from "./controllers";
 
 
 const app: Express = express();
@@ -23,6 +23,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 app.use("/img", express.static(path.join("./uploads")));
 //Rutas de controladores
 app.use("/api/login", Login);
+app.use("/api/home", Home);
 //carpeta raiz
 app.get("/", async (req: Request, res: Response) => {
   res.json({ text: `${process.env.APP_NAME} Ready!` })
