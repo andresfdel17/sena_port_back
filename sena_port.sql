@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2023 a las 16:07:55
+-- Tiempo de generación: 04-05-2023 a las 04:10:53
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sena_port`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `main_brands`
+--
+
+CREATE TABLE `main_brands` (
+  `id` int(11) NOT NULL,
+  `brand` varchar(30) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -110,6 +123,12 @@ INSERT INTO `system_temp_pass` (`id`, `email`, `code`, `due_date`, `createdAt`, 
 --
 
 --
+-- Indices de la tabla `main_brands`
+--
+ALTER TABLE `main_brands`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `main_devices`
 --
 ALTER TABLE `main_devices`
@@ -139,6 +158,12 @@ ALTER TABLE `system_temp_pass`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `main_brands`
+--
+ALTER TABLE `main_brands`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `main_devices`
