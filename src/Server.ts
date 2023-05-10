@@ -16,11 +16,11 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
 app.set("PORT", process.env.PORT || 3000);
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(express.json());
 app.use("/public", express.static(path.join(__dirname, "../public")));
-app.use("/img", express.static(path.join("./uploads")));
+app.use("/img", express.static(path.join(__dirname, "./uploads")));
 //Rutas de controladores
 app.use("/api/login", Login);
 app.use("/api/home", Home);

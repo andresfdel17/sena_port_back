@@ -16,8 +16,8 @@ class Mail implements IMail {
             port: 465,
             secure: true,
             auth: {
-                user: "no-reply@vmers.com",
-                pass: "Vmersmain2021!"
+                user: "",
+                pass: ""
             }
         }
 

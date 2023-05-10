@@ -1,6 +1,7 @@
 import multer from "multer";
+import path from "path";
 
-export const uploadDIR: string = "../uploads/";
+export const uploadDIR: string = path.join(__dirname + "/../uploads/");
 
 export const uploadStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -26,3 +27,4 @@ export const imageFilter: multer.Options = {
 export const uploader = (options: multer.Options): multer.Multer => {
     return multer(options);
 }
+

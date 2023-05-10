@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2023 a las 04:10:53
+-- Tiempo de generación: 10-05-2023 a las 03:58:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `main_brands`
---
-
-CREATE TABLE `main_brands` (
-  `id` int(11) NOT NULL,
-  `brand` varchar(30) DEFAULT NULL,
-  `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `main_devices`
 --
 
@@ -45,10 +32,20 @@ CREATE TABLE `main_devices` (
   `owner_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `brand` varchar(30) DEFAULT NULL,
-  `serial_number` varchar(100) DEFAULT NULL,
+  `color` varchar(20) DEFAULT NULL,
+  `serial_number` varchar(30) DEFAULT NULL,
+  `details` varchar(50) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `main_devices`
+--
+
+INSERT INTO `main_devices` (`id`, `owner_id`, `user_id`, `brand`, `color`, `serial_number`, `details`, `image`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 1, 'Asus', 'Gris', '3151SA3D1AS35DAD', 'shdvjhdvjsad', '/img/1683683889948-portatil.png', '2023-05-10 01:58:09', '2023-05-10 01:58:09');
 
 -- --------------------------------------------------------
 
@@ -74,7 +71,7 @@ CREATE TABLE `main_users` (
 --
 
 INSERT INTO `main_users` (`id`, `type_id`, `lang`, `name`, `last_name`, `email`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'es', 'Andres Felipe', 'Delgado Gutierrez', 'andresfdel13@gmail.com', '$2y$10$VA9IAGr39GZ0E3hkzOiY7uWyPj3ITj7EynkkyT5aig8EsxcENwYHO', 1, '2022-11-05 02:30:35', '2022-11-05 02:30:35');
+(1, 1, 'es', 'Andres Felipe', 'Delgado', 'andresfdel13@gmail.com', '$2y$10$/2gbrzB53eNvV6cNlD3EauzT4Ln60DtH1m8nLDSFXTZm9aol.TIHe', 1, '2023-05-09 20:57:10', '2023-05-09 20:57:10');
 
 -- --------------------------------------------------------
 
@@ -123,12 +120,6 @@ INSERT INTO `system_temp_pass` (`id`, `email`, `code`, `due_date`, `createdAt`, 
 --
 
 --
--- Indices de la tabla `main_brands`
---
-ALTER TABLE `main_brands`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `main_devices`
 --
 ALTER TABLE `main_devices`
@@ -160,16 +151,10 @@ ALTER TABLE `system_temp_pass`
 --
 
 --
--- AUTO_INCREMENT de la tabla `main_brands`
---
-ALTER TABLE `main_brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `main_devices`
 --
 ALTER TABLE `main_devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `main_users`
