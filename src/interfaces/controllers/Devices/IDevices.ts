@@ -1,7 +1,7 @@
 export interface INewDeviceBody {
     brand: string,
     color: string;
-    serial: string;
+    serial_number: string;
     details: string;
 }
 

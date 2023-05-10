@@ -34,14 +34,25 @@ Devices.post("/saveDevice", [getUserData, uploadFiles.single("image")], async (r
     const data: INewDeviceBody = req.body;
     const user = req.actualUser;
     const file = req.file as INewDeviceImage;
+    const actualDevices = await MDevices.findAll({
+      where:{
+        serial_number: data.serial_number
+      }
+    });
+    if(actualDevices.length > 0){
+      return res.json({code: 400, text: "existent-device"});
+    }
     const device = await MDevices.create({
       owner_id: user.id,
       user_id: user.id,
       ...data,
       image: `/img/${path.basename(file.path)}`
     });
+    if (device) {
+      return res.json({ code: 201, text: "device-saved" });
+    }
+    return res.json({ code: 500, text: "error" });
 
-    return res.status(200).json({ text: "saved" });
   } catch (error: any) {
     console.error(error);
     return res.json({ text: error.message })
